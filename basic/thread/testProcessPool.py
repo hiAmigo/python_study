@@ -2,7 +2,7 @@ from multiprocessing import Pool
 import os, time, random
 
 def run_proc(name):
-    print('C-Process-%d-%d' % (name, os.getpid())
+    print('C-Process-%d-%d' % (name, os.getpid()))
     start = time.time()
     time.sleep(random.random() * 5)
     end = time.time()
@@ -12,4 +12,10 @@ if __name__ == '__main__':
     print('Parent process is %s' % os.getpid())
     p = Pool(4)
     for i in range(6):
-        p.apply_async()
+        p.apply_async(run_proc, args=(i,))
+    print('Waiting for task done')
+    p.close()
+    print('Pool has been closed')
+    p.join()
+    print('All task is done')
+        

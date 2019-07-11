@@ -1,25 +1,27 @@
-from multiprocessing import Process, Queue
+from multiprocessing import Queue, Process
 import os, time, random
 
 def write(q):
-    print('Process to write %s' % os.getpid())
-    for value in ['A', 'B', 'C']:
-        print('Put %s to queue ' % value)
-        q.put(value)
-        time.sleep(random.random())
+    print('P-write %s' % os.getpid())
+    for i in ['a', 'b', 'c', 'd']:
+        print('Put %s in Queue' % i)
+        q.put(i)
+        time.sleep(random.random() * 5)
 
 def read(q):
-    print('Process to read %s' % os.getpid())
-    while True:
-        value = q.get(True)
-        print('Get %s from queue ' % value)
+     print('P-read %s' % os.getpid())
+     while True:
+         value = q.get(True)
+         print('Get %s from queue' % value)
 
 if __name__ == '__main__':
-    # 父进程创建Queue并传给各个子进程
     q = Queue()
     pw = Process(target=write, args=(q,))
     pr = Process(target=read, args=(q,))
+    print('pw will be start')
     pw.start()
+    print('pr will be start')
     pr.start()
     pw.join()
     pr.terminate()
+    
