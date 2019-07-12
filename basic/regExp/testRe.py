@@ -33,3 +33,5 @@ print(m2.groups())
 re_phone = re.compile(r'^(\d{3})-(\d{3,7})$')
 print(re_phone.match('020-334123').groups())
 
+# print(re.match(r'^(\w{3})(\+|\-)(\d{1,2}*)$', 'UTC+7:00').groups())
+print(re.match(r'(\w{3})(\+|\-)(\d{1,2}):(\d{1,2})', 'UTC-07:350').groups())
