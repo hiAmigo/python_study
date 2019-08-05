@@ -125,14 +125,16 @@ from functools import wraps
 
 #返回函数
 
-def lazy_sum(*args):
-    def sum():
-        total = 0
-        for n in args:
-            total += n
-        return total
-    return sum
+# def lazy_sum(*args):
+#     def sum():
+#         total = 0
+#         for n in args:
 
+#             total += n
+#         return total
+#     return sum
+# res = lazy_sum(1,2,3,4,5)
+# print(res)
 
 # def count():
 #     fs = []
@@ -208,41 +210,41 @@ def lazy_sum(*args):
 # a_func = new_decorator(a_func)
 # print(a_func.__name__)
 
-def logit(logfile='C:/Users/Administrator/Desktop/Study/python_study/basic/functional_programming/out.log'):
-    def logging_decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kw):
-            log_string = func.__name__ + ' was called'
-            print(log_string)
-            #打开logfile并写入指定内容
-            with open(logfile, 'a') as opened_file:
-                #将日志写入文件
-                opened_file.write(log_string + '\n')
-            return func(*args, **kw)
-        return wrapper
-    return logging_decorator
+# def logit(logfile='C:/Users/Administrator/Desktop/Study/python_study/basic/functional_programming/out.log'):
+#     def logging_decorator(func):
+#         @wraps(func)
+#         def wrapper(*args, **kw):
+#             log_string = func.__name__ + ' was called'
+#             print(log_string)
+#             #打开logfile并写入指定内容
+#             with open(logfile, 'a') as opened_file:
+#                 #将日志写入文件
+#                 opened_file.write(log_string + '\n')
+#             return func(*args, **kw)
+#         return wrapper
+#     return logging_decorator
 
-@logit()
-def myfunc1():
-    pass
+# @logit()
+# def myfunc1():
+#     pass
 
-myfunc1()
+# myfunc1()
 
-@logit(logfile='C:/Users/Administrator/Desktop/Study/python_study/basic/functional_programming/func2.log')
-def myfunc2():
-    pass
+# @logit(logfile='C:/Users/Administrator/Desktop/Study/python_study/basic/functional_programming/func2.log')
+# def myfunc2():
+#     pass
  
-myfunc2()
+# myfunc2()
 
-def log(func):
-    def wrapper(*args, **kw):
-        print('call %s():' % func.__name__)
-        return func(*args, **kw)
-    return wrapper
+# def log(func):
+#     def wrapper(*args, **kw):
+#         print('call %s():' % func.__name__)
+#         return func(*args, **kw)
+#     return wrapper
     
-@log
-def now():
-    print('2019-07-05')
+# @log
+# def now():
+#     print('2019-07-05')
 
-print(now())
+# print(now())
 

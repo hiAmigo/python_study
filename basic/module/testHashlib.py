@@ -16,14 +16,13 @@ def login(user, password):
     md5 = hashlib.md5()
     md5.update(password.encode('utf-8'))
     md5str = md5.hexdigest()
-    for i in db.keys():
-        if i in db:
-            if db.user == md5str:
-                return True
-            else:
-                return False
+    if user in db:
+        if db.get() == md5str:
+            return True
         else:
             return False
+    else:
+        return False
 
 # 测试:
 assert login('michael', '123456')
